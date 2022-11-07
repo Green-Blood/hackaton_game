@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 namespace Extensions
@@ -6,13 +7,7 @@ namespace Extensions
     {
         public static float GetImpactForce(this Collision2D collision)
         {
-            float impulse = 0F;
-
-            foreach (ContactPoint2D point in collision.contacts)
-            {
-                impulse += point.normalImpulse;
-            }
-
+            float impulse = collision.contacts.Sum(point => point.normalImpulse);
             return impulse / Time.fixedDeltaTime;
         }
     }
