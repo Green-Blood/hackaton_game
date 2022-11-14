@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using MoreMountains.Feedbacks;
 using UnityEngine;
@@ -13,15 +14,17 @@ namespace Sound_Game
         [SerializeField] private Image image;
         [SerializeField] private Image buttonImage;
 
-        public bool isCorrect;
+        public bool IsCorrect { get; set; }
         public Button Button => button;
         public Image Image => buttonImage;
+        public Action OnCorrectFeedbackClicked;
         private Color _initialColor;
 
         private void Awake()
         {
             _initialColor = image.color;
         }
+
 
         public void PlayCorrectFeedback()
         {
@@ -31,6 +34,7 @@ namespace Sound_Game
             {
                 image.color = _initialColor;
                 image.gameObject.SetActive(false);
+                OnCorrectFeedbackClicked?.Invoke();
             });
         }
 

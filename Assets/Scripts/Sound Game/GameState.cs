@@ -3,33 +3,29 @@ using UnityEngine;
 
 namespace Sound_Game
 {
-    public class GameState : MonoBehaviour
+    public class GameState 
     {
-        [SerializeField] private StateMachine stateMachine;
-        [SerializeField] private GameLevels gameLevels;
+        private readonly GameLevels _gameLevels;
+        public GameState(GameLevels gameLevels) => _gameLevels = gameLevels;
 
         private LevelSettings _currentLevel;
         public Action<LevelSettings> OnLevelChange;
 
         private int _currentLevelNumber;
-        private void Awake()
-        {
-            SetLevel(1);
-            stateMachine.OnStateChange += OnStateChange;
-        }
 
-        private void OnStateChange(State state)
-        {
-            if (state == State.NextGame)
-            {
-                SetLevel(_currentLevelNumber++);
-            }
-        }
-
+        public bool CanStartNextLevel() => _gameLevels.levelSettings[_currentLevelNumber] != null;
 
         public void SetLevel(int levelNumber)
         {
-            _currentLevel = gameLevels.levelSettings[levelNumber - 1];
+            _currentLevelNumber = levelNumber;
+            _currentLevel = _gameLevels.levelSettings[levelNumber - 1];
+            OnLevelChange?.Invoke(_currentLevel);
+        }
+
+        public void SetNextLevel()
+        {
+            _currentLevelNumber++;
+            _currentLevel = _gameLevels.levelSettings[_currentLevelNumber - 1];
             OnLevelChange?.Invoke(_currentLevel);
         }
     }

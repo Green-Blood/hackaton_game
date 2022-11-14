@@ -19,4 +19,11 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 829841e1b4dca4364bf2c85a007ab35e, type: 3}
     - {fileID: 21300000, guid: d5330dadf99814a768e663c7c2fd4efb, type: 3}
     correctImageNumber: 1
-    levelSound: {fileID: 8300000, guid: c25911cd0ad1146d0b3c1cee09ce3f21, type: 3}
+    levelAudio: {fileID: 8300000, guid: c25911cd0ad1146d0b3c1cee09ce3f21, type: 3}
+  - levelImages:
+    - {fileID: 21300000, guid: d5330dadf99814a768e663c7c2fd4efb, type: 3}
+    - {fileID: 21300000, guid: 829841e1b4dca4364bf2c85a007ab35e, type: 3}
+    - {fileID: 21300000, guid: adad7a60d05c8406b9700dccb5864614, type: 3}
+    - {fileID: 21300000, guid: 6970ca1a99628498d9552f6aac24d6bf, type: 3}
+    correctImageNumber: 2
+    levelAudio: {fileID: 8300000, guid: c25911cd0ad1146d0b3c1cee09ce3f21, type: 3}

@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Sound_Game
 {
@@ -9,14 +7,4 @@ namespace Sound_Game
     {
         public LevelSettings[] levelSettings;
     }
-
-    [Serializable]
-    public struct LevelSettings
-    {
-        public Sprite[] levelImages;
-        [Tooltip("Start from 1, it's ok)")]
-        public int correctImageNumber;
-        public AudioClip levelAudio;
-    }
-    
 }
