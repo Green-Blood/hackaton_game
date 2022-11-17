@@ -1,0 +1,49 @@
+Resoconto pacchetto
+
+-----------------------------------------------------------------------------
+Documento: 
+Nome: minigame001.ai
+Metodo colore: Colore RGB
+Profilo colore:  sRGB IEC61966-2.1
+Unità righelli: pixel
+Dimensioni tavola disegno: 1366 px x 768 px
+Mostra immagini con metodo contorno: NO
+Evidenzia font sostituiti: NO
+Evidenzia glifi sostituiti: NO
+Mantieni testo modificabile
+Simula carta colorata: NO
+
+-----------------------------------------------------------------------------
+Oggetti in tinta piatta: 
+eye (RGB)
+skin001 (RGB)
+
+-----------------------------------------------------------------------------
+Font mancanti:NESSUNO
+
+-----------------------------------------------------------------------------
+Font protetti non inclusi nel pacchetto:NESSUNO
+
+-----------------------------------------------------------------------------
+Font: 
+Besty (TrueType)
+Gotham-Thin (OTF)
+
+-----------------------------------------------------------------------------
+Font incorporati:
+NESSUNO
+
+-----------------------------------------------------------------------------
+Collegamenti mancanti:
+NESSUNO
+
+-----------------------------------------------------------------------------
+Immagini collegate: 
+
+E:\Lavoro\lavoro app\light-speed-space-warp-colored-rays-big-bang-colourful-3840x2160-6395.jpg
+Tipo: RGB
+Bit per pixel: 24
+Canali: 3
+Dimensione: 24300K, 3840 per 2160 pixel
+Dimensioni: 858.499 per 413.706 punti 
+Risoluzione: 322.051 per 375.919 pixel per pollice

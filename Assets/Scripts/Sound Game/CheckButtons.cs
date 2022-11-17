@@ -6,7 +6,7 @@ namespace Sound_Game
     public class CheckButtons : MonoBehaviour
     {
         [SerializeField] private CheckButton[] checkButtons;
-
+        [SerializeField] private HandMover handMover;
         public void InitImages(Sprite[] levelSettingsLevelImages, int levelSettingsCorrectImageNumber, Action onCorrectButtonClicked)
         {
             for (var index = 0; index < checkButtons.Length; index++)
@@ -36,6 +36,7 @@ namespace Sound_Game
                 {
                     checkButton.Button.onClick.AddListener(checkButton.PlayIncorrectFeedback);
                 }
+                checkButton.OnButtonClicked += handMover.MoveCatHand;
             }
         }
     }

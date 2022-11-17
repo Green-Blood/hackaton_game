@@ -8,12 +8,14 @@ namespace Sound_Game
         private readonly GameState _gameState;
         private readonly CheckButtons _checkButtons;
         private readonly AudioSource _levelAudio;
+        private readonly ScoreSystem _scoreSystem;
 
-        public LevelStarter(GameState gameState, CheckButtons checkButtons, AudioSource levelAudio)
+        public LevelStarter(GameState gameState, CheckButtons checkButtons, AudioSource levelAudio, ScoreSystem scoreSystem)
         {
             _gameState = gameState;
             _checkButtons = checkButtons;
             _levelAudio = levelAudio;
+            _scoreSystem = scoreSystem;
             _gameState.OnLevelChange += OnLevelChange;
         }
 
@@ -23,9 +25,10 @@ namespace Sound_Game
         {
             _checkButtons.InitImages(levelSettings.levelImages, levelSettings.correctImageNumber, () =>
             {
-                
+                _scoreSystem.IncreaseScore();
             });
             _levelAudio.clip = levelSettings.levelAudio;
+            _levelAudio.Play();
         }
 
         public void Dispose() => _gameState.OnLevelChange -= OnLevelChange;

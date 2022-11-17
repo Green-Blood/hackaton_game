@@ -1,6 +1,7 @@
 using System;
 using DG.Tweening;
 using MoreMountains.Feedbacks;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,8 @@ namespace Sound_Game
         public bool IsCorrect { get; set; }
         public Button Button => button;
         public Image Image => buttonImage;
+        public Action<Button> OnButtonClicked;
+
         public Action OnCorrectFeedbackClicked;
         private Color _initialColor;
 
@@ -29,24 +32,35 @@ namespace Sound_Game
         public void PlayCorrectFeedback()
         {
             correctFeedback.PlayFeedbacks();
-            image.gameObject.SetActive(true);
-            image.DOColor(Color.green, 0.2f).SetLoops(2).OnComplete(() =>
+            Observable.Timer(TimeSpan.FromSeconds(correctFeedback.TotalDuration)).Subscribe(l =>
             {
-                image.color = _initialColor;
-                image.gameObject.SetActive(false);
                 OnCorrectFeedbackClicked?.Invoke();
             });
+            OnButtonClicked?.Invoke(button);
+            // image.gameObject.SetActive(true);
+            // image.DOColor(Color.green, 0.2f).SetLoops(2).OnComplete(() =>
+            // {
+            //     image.color = _initialColor;
+            //     image.gameObject.SetActive(false);
+            //   
+            // });
         }
 
         public void PlayIncorrectFeedback()
         {
             inCorrectFeedback.PlayFeedbacks();
-            image.gameObject.SetActive(true);
-            image.DOColor(Color.red, 0.2f).SetLoops(2).OnComplete(() =>
-            {
-                image.color = _initialColor;
-                image.gameObject.SetActive(false);
-            });
+            OnButtonClicked?.Invoke(button);
+            // image.gameObject.SetActive(true);
+            // Observable.Timer(TimeSpan.FromSeconds(inCorrectFeedback.TotalDuration)).Subscribe(l =>
+            // {
+                // image.gameObject.SetActive(false);
+            // });
+            
+            // image.DOColor(Color.red, 0.2f).SetLoops(2).OnComplete(() =>
+            // {
+            //     image.color = _initialColor;
+           
+            // });
         }
     }
 }

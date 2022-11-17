@@ -7,19 +7,28 @@ namespace Sound_Game
         [SerializeField] private GameLevels gameLevels;
         [SerializeField] private CheckButtons checkButtons;
         [SerializeField] private AudioSource levelAudio;
+        [SerializeField] private HandMover handMover;
         
         private StateMachine _stateMachine;
         private GameState _gameState;
+        private ScoreSystem _scoreSystem;
         private LevelStarter _levelStarter;
         private void Awake()
         {
             _stateMachine = new StateMachine();
             _gameState = new GameState(gameLevels);
-            _levelStarter = new LevelStarter(_gameState, checkButtons, levelAudio);
+            _scoreSystem = new ScoreSystem();
+            _levelStarter = new LevelStarter(_gameState, checkButtons, levelAudio, _scoreSystem);
         }
         private void Start() => StartGame();
         private void StartGame() => _gameState.SetLevel(1);
-        private void OnEnable() => _stateMachine.OnStateChange += OnStateChange;
+        private void OnEnable()
+        {
+            _stateMachine.OnStateChange += OnStateChange;
+            handMover.OnHandFinishedMoving += StartNextLevel;
+        }
+
+        private void StartNextLevel() => _stateMachine.ChangeState(State.NextGame);
 
         private void OnStateChange(State state)
         {
@@ -34,6 +43,10 @@ namespace Sound_Game
             }
         }
 
-        private void OnDisable() => _stateMachine.OnStateChange -= OnStateChange;
+        private void OnDisable()
+        {
+            _stateMachine.OnStateChange -= OnStateChange;
+            handMover.OnHandFinishedMoving -= StartNextLevel;
+        }
     }
 }
