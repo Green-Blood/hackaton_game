@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,7 @@ namespace Sound_Game
 
         private float _initialPosition;
         public Action OnHandFinishedMoving;
+        public Action<Button> OnHandClicked;
         private void Awake() => _initialPosition = transform.localPosition.y;
 
         public void MoveCatHand(Button button)
@@ -27,9 +29,12 @@ namespace Sound_Game
             hand.transform.position = position;
 
             hand.transform.DOLocalMoveY(_initialPosition + moveValue, moveDuration).SetEase(moveEase).OnComplete((() =>
+            {
+                OnHandClicked?.Invoke(button);
                 hand.transform.DOLocalMoveY(_initialPosition, moveDownDuration).SetEase(moveDownEase)
                     .SetDelay(moveDownDelay).OnComplete((
-                        () => { OnHandFinishedMoving?.Invoke(); }))));
+                        () => { OnHandFinishedMoving?.Invoke(); }));
+            }));
         }
     }
 }
